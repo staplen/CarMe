@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CarMe</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="apple-touch-icon" href="img/ios7/icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="img/ios7/icon-72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/ios7/icon@2x.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="img/ios7/icon-72@2x.png" />
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEGThI_849yeH95VsZhM22RIulEy55L-8&sensor=true">
+    </script>
+    <script src="js/geolocationmarker.min.js"></script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-28679304-1']);
+      _gaq.push(['_setDomainName', 'nicostaple.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </head>
+  <body>
+    <div id="userToolbar">
+      <ul>
+        <li id="userName"><a href="/api/login"></a></li>
+        <li id="logout-trigger"><a href="/api/logout">Logout &rarr;</a></li>
+      </ul>
+    </div>
+    <div id="map-canvas"/>
+    <script src="js/app.js"></script>
+    <script id="infoWindow-template" type="text/template">
+      <% 
+        var bookingTriggerText = activeBooking.active ? 'Cancel active reservation and reserve &rarr;' : userAuthenticated ? 'Reserve &rarr;' : 'Login to reserve &rarr;';
+      %>
+      <p class="carMe-infoWindow-content
+                <% if (activeBooking.active && !bookedVehicle) { print(' active-booking') } %>
+                <% if (bookedVehicle) { print(' booked-vehicle') } %>"
+      >
+        <strong><%= displayAddress %></strong><br/>
+        <%= numberPlate %> | fuel: <%= fuel %>%<br/>
+        <a href="#" data-vin="<%= vin %>" class="booking-trigger"><%= bookingTriggerText %></a>
+        <span class="booking-info">Reserved until <%= activeBooking.expiresPretty %> | </span>
+        <a href="#" class="booking-cancel">Cancel &rarr;</a>
+        <span class="booking-status"></span>
+      </p>
+    </script>
+  </body>
+</html>

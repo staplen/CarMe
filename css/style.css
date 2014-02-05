@@ -1,0 +1,95 @@
+html { 
+	height: 100%;
+}
+body { 
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#map-canvas { 
+	height: 100%;
+}
+span.booking-status, .booking-cancel, .booking-info, .booked-vehicle .booking-trigger, #userToolbar li#logout-trigger {
+	display: none;
+}
+
+#userToolbar {
+	display: none;
+	cursor: default;
+	position: absolute;
+	padding: 3px;
+	top: 0;
+	margin: 5px;
+	right: 0;
+	background: rgba(255,255,255,1.0);
+	z-index: 100;
+	font-size: 12px;
+	border-bottom-left-radius: 2px;
+	border-top-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-top-right-radius: 2px;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid rgba(0, 0, 0, 0.14902);
+	-webkit-box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+	box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
+	font-weight: 500;
+}
+#userToolbar li, #userToolbar a, #userToolbar a:visited {
+	color: #000;
+	font-family: Roboto, Arial, sans-serif;
+}
+#userToolbar ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#userToolbar li {
+	float: left;
+}
+#userToolbar select#user-accounts-list {
+	cursor: pointer;
+	display: inline-block;
+	font: inherit;
+	border: 1px solid #000;
+	border-radius: 0;
+	padding: 0 2px;
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+/*#userName:after {
+	cursor: pointer;
+	content: "\2207";
+}*/
+
+body.authenticated-user #userToolbar, body.authenticated-user #userToolbar li#logout-trigger {
+	display: block;
+}
+li#logout-trigger a {
+	line-height: 22px;
+}
+body.authenticated-user #userToolbar li:first-child {
+	border-right: 1px solid #000;
+	padding-right: 7px;
+	padding-left: 5px;
+	margin-right: 7px;
+}
+body.authenticated-user #userToolbar li:last-child {
+	padding-right: 5px;
+}
+
+.carMe-infoWindow-content {
+	height: 54px;
+	text-align: center;
+	margin: 0;
+}
+.carMe-infoWindow-content a:link, .carMe-infoWindow-content a:active, .carMe-infoWindow-content a:visited {
+	color: #2a6496;
+}
+.booked-vehicle .booking-cancel, .booked-vehicle .booking-info {
+	display: inline;
+}
+.booking-info {
+	color: #ED3511;
+}
