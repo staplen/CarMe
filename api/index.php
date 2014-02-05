@@ -21,6 +21,12 @@ require_once (CONFIG_DIR . DS . 'environment.php');
 require_once (CONFIG_DIR . DS . 'locale.php');
 define('URL_ROOT',        $config['site_url']);
 
+
+/* Connect to the database
+------------------------------------------------------------------*/
+$carme_db  = new fDatabase($config['db_type'], $config['db_name'], $config['db_user'], $config['db_pass'], $config['db_url']);
+
+
 /* Start the session
 ------------------------------------------------------------------*/
 fSession::setPath(SYSROOT . DS . 'tmp' . DS . 'sessions');
@@ -71,6 +77,10 @@ else if ($page === 'all_vehicles') {
 }
 else if ($query || $page === 'booking') {
   require_once('router_advanced.php');
+  exit;
+}
+else if ($page == 'datacron') {
+  require_once('data_cron.php');
   exit;
 }
 else {

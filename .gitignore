@@ -2,3 +2,4 @@ api/tmp
 .htaccess
 api/.htaccess
 api/config/config.php
+api/tmp/logs/error.log
