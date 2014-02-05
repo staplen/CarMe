@@ -1,4 +1,4 @@
-
+api/tmp
+.htaccess
 api/.htaccess
-
 api/config/config.php
