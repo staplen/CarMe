@@ -13,7 +13,7 @@ $(function() {
   var activeBooking = {
     active: false
   };
-  var map, userMarker, bookingMarker, userPosition;
+  var map, userMarker, bookingMarker, userPosition, markerCluster;
   var carMarkers = [];
   var availableCars = [];
   var availableCarsVins = [];
@@ -28,12 +28,13 @@ $(function() {
   function initialize(position) {
     var mapOptions = {
       center: position,
-      zoom: 15,
+      zoom: 14,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       mapTypeControl: false,
       streetViewControl: false
     };
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    markerCluster = new MarkerClusterer(map);
     var GeoMarker = new GeolocationMarker(map);
     google.maps.event.addListener(GeoMarker, 'position_changed', function(e) {
       map.panTo(GeoMarker.getPosition());
@@ -107,7 +108,6 @@ $(function() {
     var marker = new google.maps.Marker({
       position: position,
       icon: myIcon,
-      map: map,
       carMe: carMeData
     });
     carMarkers[carMeData.vin] = marker;
@@ -117,6 +117,7 @@ $(function() {
       // map.panTo(position);
       new google.maps.event.trigger( marker, 'click' );
     }
+    markerCluster.addMarker(marker);
   }
 
   function removeMarker(marker) {
